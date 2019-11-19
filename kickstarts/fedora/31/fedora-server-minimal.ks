@@ -60,7 +60,6 @@ grub2-efi
 grub2
 shim
 syslinux
-@console-internet
 chrony
 sudo
 parted
