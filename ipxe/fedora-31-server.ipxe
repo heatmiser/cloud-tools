@@ -13,6 +13,6 @@ set repo ${mirror}/Server/${arch}/os
 set kickuri https://raw.githubusercontent.com/heatmiser/cloud-tools/master/kickstarts/fedora/31
 
 # Start installer
-kernel ${repo}/images/pxeboot/vmlinuz ks=${kickuri}/fedora-server-minimal.ks network ksdevice=bootif BOOTIF=01-${netX/mac}
+kernel ${repo}/images/pxeboot/vmlinuz ks=${kickuri}/fedora-server-minimal.ks console=ttyS1,115200n8 network ksdevice=bootif BOOTIF=01-${netX/mac}
 initrd ${repo}/images/pxeboot/initrd.img 
 boot
