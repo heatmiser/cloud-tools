@@ -1,0 +1,18 @@
+#!ipxe
+dhcp
+set dns 8.8.8.8
+  
+# Set source mirror URI
+set mirror http://download.fedoraproject.org/pub/fedora/linux/releases/31
+
+# Detect CPU architecture and calculate repository URI
+cpuid --ext 29 && set arch x86_64 || set arch armhfp
+set repo ${mirror}/Server/${arch}/os
+
+# Set kickstart URI
+set kickuri https://raw.githubusercontent.com/heatmiser/cloud-tools/master/kickstarts/fedora/31
+
+# Start installer
+kernel ${repo}/images/pxeboot/vmlinuz ks=${kickuri}/fedora-server-minimal.ks network ksdevice=bootif BOOTIF=01-${netX/mac}
+initrd ${repo}/images/pxeboot/initrd.img 
+boot
